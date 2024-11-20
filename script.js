@@ -43,7 +43,7 @@ function addExpense(name, amount, date) {
   row.appendChild(nameCell);
 
   const amountCell = document.createElement("td");
-  amountCell.textContent = `$${amount}`;
+  amountCell.textContent = `GH₵${amount}`;
   amountCell.addEventListener("click", function () {
     editCell(amountCell);
   });
@@ -80,11 +80,11 @@ function editCell(cell) {
       cell.contentEditable = "false";
       const newValue = cell.textContent.trim();
       if (cell.cellIndex === 1) {
-        const oldAmount = parseFloat(oldValue.replace("$", ""));
-        const newAmount = newValue.replace("$", "");
+        const oldAmount = parseFloat(oldValue.replace("GH₵", ""));
+        const newAmount = newValue.replace("GH₵", "");
         if (!isNaN(newAmount)) {
           updateTotal(parseFloat(newAmount) - oldAmount);
-          cell.textContent = `$${newValue}`;
+          cell.textContent = `GH₵${newValue}`;
           removeTooltip(cell);
         } else {
           cell.textContent = oldValue;
@@ -108,7 +108,7 @@ function editCell(cell) {
 
 function deleteExpense(row) {
   const amountCell = row.cells[1];
-  const amount = parseFloat(amountCell.textContent.replace("$", ""));
+  const amount = parseFloat(amountCell.textContent.replace("GH₵", ""));
   row.remove();
   updateTotal(-amount);
 }
